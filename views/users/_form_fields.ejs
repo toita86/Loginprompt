@@ -1,15 +1,12 @@
 <label>name</label>
 <input type="text" name="name" value="<%= user.name %>">
 <br>
-<!--
-<label>color</label>
-<input type="text" name="color" value="<%= user.color %>">
--->
+<p>The color if not chosen wil be set by default on red</p>
 <div class="dropdown">
     <button onclick="myFunction()" class="dropbtn">menu</button>
-    <div id="myDropdown" class="dropdown-content">
-      <button class="button" name="color" value="red">red</button>
-      <button class="button" name="color" value="yellow">yellow</button>
-      <button class="button" name="color" value="blue">blue</button>
-    </div>
+  <div id="myDropdown" class="dropdown-content">
+    <button class="button" name="color" value="red">red</button>
+    <button class="button" name="color" value="yellow">yellow</button>
+    <button class="button" name="color" value="blue">blue</button>
   </div>
+</div>
