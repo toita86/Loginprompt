@@ -1,9 +1,6 @@
 <h2>Edit User</h2>
 <form action="/users/<%=user.id%>?_method=PUT" method="POST">
     <%- include('_form_fields')%>
-    <br>
-    <label>color</label>
-    <input type="text" name="color" value="<%= user.color %>">
     <a href="/users/<%=user.id%>">Cancel</a>
     <button type="submit">update</button>
 </form>
