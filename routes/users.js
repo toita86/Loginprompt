@@ -34,13 +34,63 @@ router.post('/',async (req, res)=>{
     })
     try{
         const newUser = await user.save()
-        //res.redirect(`users/${newUser.id}`)
-        res.redirect(`users`) 
+        res.redirect(`users/${newUser.id}`)
     }catch{
         res.render('users/new', {
             user: user,
             errorMessage: 'Error creating user'
         })
+    }
+})
+
+//new route needs to stay on top because  otherwise will take 'new' as an id
+
+router.get('/:id', (req,res)=>{
+    res.send('Show User '+ req.params.id)
+})
+
+router.get('/:id/edit', async(req,res)=>{
+    try{
+        const user = await User.findById(req.params.id)
+        res.render('users/edit', {user: user})
+    }
+    catch{
+        res.redirect('/users')
+    }
+})
+
+//Update User
+router.put('/:id', async (req,res)=>{
+    let user
+    try{
+        user = await User.findById(req.params.id)
+        user.name = req.body.name
+        await user.save()
+        res.redirect(`/users/${user.id}`)
+    }catch{
+        if(user == null){
+            res.redirect(`/`)  
+        }else{
+            res.render('users/edit', {
+                user: user,
+                errorMessage: 'Error updating user'
+            })
+        }
+    }
+})
+
+router.delete('/:id', async (req,res)=>{
+    let user
+    try{
+        user = await User.findById(req.params.id)
+        await user.remove()
+        res.redirect('/users')
+    }catch{
+        if(user == null){
+            res.redirect(`/`)  
+        }else{
+            req.redirect(`/users/${user.id}`)
+        }
     }
 })
 
