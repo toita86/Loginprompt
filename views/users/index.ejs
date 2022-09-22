@@ -4,9 +4,12 @@
     <input type="text" name="name" value="<%= searchOption.name %>">
     <button type="submit">Search</button>
 </form>
+
 <br>
+
 <% users.forEach(user =>{ %>
     <div><%= user.name %></div>
+    <div><%= user.color %></div>
     <a href="/users/<%= user.id%>">View</a>
     <a href="/users/<%= user.id%>/edit">Edit</a>
     <%- include('../partials/deleteForm', {url:`/users/${user.id}`})%>

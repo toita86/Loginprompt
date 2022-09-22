@@ -30,7 +30,8 @@ router.get('/new', (req, res)=>{
 //Create user route
 router.post('/',async (req, res)=>{
     const user = new User({
-        name: req.body.name
+        name: req.body.name,
+        color: req.body.color
     })
     try{
         const newUser = await user.save()
@@ -45,8 +46,18 @@ router.post('/',async (req, res)=>{
 
 //new route needs to stay on top because  otherwise will take 'new' as an id
 
-router.get('/:id', (req,res)=>{
-    res.send('Show User '+ req.params.id)
+//Show user page
+router.get('/:id', async (req,res)=>{
+    try{
+        const user = await User.findById(req.params.id)
+    
+        res.render('users/show',{
+            user: user,
+            color: user.color
+        })
+    }catch{
+        res.redirect('/')
+    }
 })
 
 router.get('/:id/edit', async(req,res)=>{
@@ -65,6 +76,7 @@ router.put('/:id', async (req,res)=>{
     try{
         user = await User.findById(req.params.id)
         user.name = req.body.name
+        user.color = req.body.color
         await user.save()
         res.redirect(`/users/${user.id}`)
     }catch{
