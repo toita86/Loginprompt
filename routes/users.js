@@ -33,11 +33,7 @@ router.post('/',async (req, res)=>{
         name: req.body.name,
         color: req.body.color
     })
-    if(user.color !== "red" && 
-    user.color !== "yellow" &&
-    user.color !== "blue"){
-        user.color = "red"
-    }
+
     try{
         const newUser = await user.save()
         res.redirect(`users/${newUser.id}`)
@@ -81,14 +77,17 @@ router.put('/:id', async (req,res)=>{
     try{
         user = await User.findById(req.params.id)
         user.name = req.body.name
+        
         if(req.body.color !== "red" && 
         req.body.color !== "yellow" &&
         req.body.color !== "blue")
         {
             user.color = "red"
-        }else{
+        }else
+        {
             user.color = req.body.color
         }
+        
         await user.save()
         res.redirect(`/users/${user.id}`)
     }catch{
