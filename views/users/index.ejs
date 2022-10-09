@@ -12,5 +12,6 @@
     <div><%= user.color %></div>
     <a href="/users/<%= user.id%>">View</a>
     <a href="/users/<%= user.id%>/edit">Edit</a>
+    <br>
     <%- include('../partials/deleteForm', {url:`/users/${user.id}`})%>
 <% }) %>

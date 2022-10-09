@@ -2,8 +2,10 @@
 <input type="text" name="name" value="<%= user.name %>">
 <br>
 <p>The color if not chosen will be set by default on red</p>
-<select name="color">
-  <option value="red" onclick="colorBg('red')">Red</option>
-  <option value="blue" onclick="colorBg('blue')" >Blue</option>
-  <option value="yellow" onclick="colorBg('yellow')" >Yellow</option>
-</select>
+<div class="dropmenu">
+  <select name="color">
+    <option value="red" onclick="colorBg('red')">Red</option>
+    <option value="blue" onclick="colorBg('blue')" >Blue</option>
+    <option value="yellow" onclick="colorBg('yellow')" >Yellow</option>
+  </select>
+</div>

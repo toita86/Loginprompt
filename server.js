@@ -29,7 +29,6 @@ const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', error => console.log('Connetion succesful'))
 
-
 app.use('/', indexRouter)
 app.use('/users', userRouter)//for the user directory
 
