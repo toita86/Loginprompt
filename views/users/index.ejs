@@ -8,10 +8,21 @@
 <br>
 
 <% users.forEach(user =>{ %>
-    <div><%= user.name %></div>
-    <div><%= user.color %></div>
-    <a href="/users/<%= user.id%>">View</a>
-    <a href="/users/<%= user.id%>/edit">Edit</a>
-    <br>
-    <%- include('../partials/deleteForm', {url:`/users/${user.id}`})%>
+    <% if(searchOption.name != null){ %>
+        <body style="background-color: <%= user.color %>">
+        <div><%= user.name %></div>
+        <div><%= user.color %></div>
+        <a href="/users/<%= user.id%>">View</a>
+        <a href="/users/<%= user.id%>/edit">Edit</a>
+        <br>
+        <%- include('../partials/deleteForm', {url:`/users/${user.id}`})%>
+        </body>
+    <%}else{%>
+        <div><%= user.name %></div>
+        <div><%= user.color %></div>
+        <a href="/users/<%= user.id%>">View</a>
+        <a href="/users/<%= user.id%>/edit">Edit</a>
+        <br>
+        <%- include('../partials/deleteForm', {url:`/users/${user.id}`})%>
+    <%}%>
 <% }) %>
